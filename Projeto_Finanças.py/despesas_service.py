@@ -25,6 +25,14 @@ def Menu_Despesas():
              Listar_despesas_voltar_menu_principal()
         if opcao_despesas==3:
              Excluir_despesas()
+        if opcao_despesas==4:
+             Editar_despesa()
+        if opcao_despesas>4:
+            os.system('cls')
+            print('Valor inválido, erro na digitação!')
+            input('Digite uma tecla para voltar ao menu principal')
+        
+             
              
     except ValueError():
             print('Valor inválido, erro na digitação!')
@@ -42,7 +50,12 @@ def Cadastrar_despesa():
         nome_da_despesa= str(input('Digite o nome da despesa:')).capitalize()
         valor_da_despesa=float(input('Digite o valor da despesa:'))
 
-        despesa1=Despesa(uuid.uuid4(),nome_da_despesa,valor_da_despesa)
+        descricao_da_despesa=str(input('\nDigite a descrição da despesa:'))
+
+        vencimento_da_despesa=str(input('\nDigite o vencimento da despesa:'))
+
+
+        despesa1=Despesa(uuid.uuid4(),nome_da_despesa,valor_da_despesa,descricao_da_despesa,vencimento_da_despesa)
         despesas.append(despesa1)
 
         print('Despesa cadastrada com sucesso!')
@@ -59,7 +72,7 @@ def Listar_despesas():
     for despesa_item in despesas:
             cont+=1
             
-            print(f'{cont}-{despesa_item.nome} R$ {despesa_item.valor}')
+            print(f'{cont}-{despesa_item.nome} R$ {despesa_item.valor}\nDescrição:{despesa_item.descricao}\nValidade:{despesa_item.vencimento}\n')
             
 
 def Listar_despesas_voltar_menu_principal():

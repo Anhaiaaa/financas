@@ -18,8 +18,7 @@ while True:
         if opcao==1:
             Menu_Despesas()
             pass
-            
-
+        
         if opcao==2:
             Menu_Receita()
             pass
@@ -35,9 +34,15 @@ while True:
             sleep(2)
             os.system('cls')
             break
+        if opcao>4:
+            os.system('cls')
+            print('ERRO')
+            input('Digite uma tecla pra voltar ao menu principal')
+
             
 
-    except ValueError :
+    except:
+        os.system('cls')
         print('ERRO')
         input('Digite uma tecla pra voltar ao menu principal')
         pass
