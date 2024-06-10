@@ -6,6 +6,7 @@ from dados import despesas
 from Despesa import Despesa
 import uuid
 import os
+import datetime
 
 def Menu_Despesas():
     os.system('cls')
@@ -38,9 +39,7 @@ def Menu_Despesas():
             print('Valor inválido, erro na digitação!')
             input('Digite uma tecla para voltar ao menu principal')
         
-    pass
-
-
+    
 def Cadastrar_despesa():
     os.system('cls')
     print('-'*28)
@@ -50,18 +49,20 @@ def Cadastrar_despesa():
         nome_da_despesa= str(input('Digite o nome da despesa:')).capitalize()
         valor_da_despesa=float(input('Digite o valor da despesa:'))
 
-        descricao_da_despesa=str(input('\nDigite a descrição da despesa:'))
+        descricao_da_despesa=str(input('\nDigite a descrição da despesa:')).capitalize()
 
-        vencimento_da_despesa=str(input('\nDigite o vencimento da despesa:'))
+        vencimento_da_despesa=input('\nInforme a data de vencimento da receita sem as barras ex:(01012024):')
+        vencimento_da_despesa_formatada= f'{vencimento_da_despesa[0:2]}/{vencimento_da_despesa[2:4]}/{vencimento_da_despesa[4:]}'
+        vencimento=datetime.datetime.strptime(vencimento_da_despesa_formatada,"%d/%m/%Y")
 
-
-        despesa1=Despesa(uuid.uuid4(),nome_da_despesa,valor_da_despesa,descricao_da_despesa,vencimento_da_despesa)
+        despesa1=Despesa(uuid.uuid4(),nome_da_despesa,valor_da_despesa,descricao_da_despesa,vencimento)
         despesas.append(despesa1)
 
-        print('Despesa cadastrada com sucesso!')
+        print('\nDespesa cadastrada com sucesso!')
         input('Digite uma tecla para voltar ao menu principal:')
     except ValueError:
-         pass
+         print('ERRO, valor inválido!')
+         input('Digite uma tecla para voltar ao menu principal:')
 
 def Listar_despesas():
     os.system('cls')
@@ -72,7 +73,7 @@ def Listar_despesas():
     for despesa_item in despesas:
             cont+=1
             
-            print(f'{cont}-{despesa_item.nome} R$ {despesa_item.valor}\nDescrição:{despesa_item.descricao}\nValidade:{despesa_item.vencimento}\n')
+            print(f'{cont}-{despesa_item.nome} R$ {despesa_item.valor:.2f}\nDescrição:{despesa_item.descricao}\nValidade:{despesa_item.vencimento}\n')
             
 
 def Listar_despesas_voltar_menu_principal():
@@ -84,13 +85,13 @@ def Listar_despesas_voltar_menu_principal():
 
 
 def Excluir_despesas():
-    os.system('cls')
     try:
         Listar_despesas()
         despesa_excluida_pelo_usuario=int(input('Qual despesa deseja excluir?'))
         despesas.pop(despesa_excluida_pelo_usuario-1)
+        os.system('cls')
 
-        print('Despesa excluída com sucesso!')
+        print('\nDespesa excluída com sucesso!')
         input('Digite uma tecla para voltar ao menu principal:')
        
     except ValueError:

@@ -17,17 +17,16 @@ while True:
         pass
         if opcao==1:
             Menu_Despesas()
-            pass
+            
         
         if opcao==2:
             Menu_Receita()
-            pass
+            
         
         if opcao==3:
             Menu_Conta()
-            pass
+            
         
-
         if opcao==4:
             os.system('cls')
             print('Encerrando programa...')
@@ -39,13 +38,11 @@ while True:
             print('ERRO')
             input('Digite uma tecla pra voltar ao menu principal')
 
-            
-
     except:
         os.system('cls')
         print('ERRO')
         input('Digite uma tecla pra voltar ao menu principal')
-        pass
+        
            
 
     
