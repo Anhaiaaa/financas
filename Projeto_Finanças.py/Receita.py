@@ -5,4 +5,4 @@ class Receita():
         self.valor= valor
         self.descricao=descricao
         self.vencimento=vencimento
-        pass
+        

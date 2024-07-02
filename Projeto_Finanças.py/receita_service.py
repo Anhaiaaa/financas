@@ -21,15 +21,20 @@ def Menu_Receita():
         opcao_receita=int(input('Selecione uma opção:'))
         if opcao_receita==1:
             Cadastrar_receita()
-            pass
 
         if opcao_receita==2:
             Listar_receita_menu_principal()
-            pass
-
+            
         if opcao_receita==3:
             Excluir_receita()
-            pass
+            
+        if opcao_receita==4:
+            Editar_receita()
+
+        if opcao_receita>4:
+            print('ERRO, valor inválido!')
+            print(input('Digite uma tecla para voltar ao menu principal'))
+
         
         
     except ValueError():
@@ -95,6 +100,35 @@ def Excluir_receita():
         input('Digite uma tecla para voltar ao menu principal:')
 
 def Editar_receita():
-    pass
+     
+        try:
+            Listar_receitas()
+            receita_que_vai_ser_editada=int(input('Qual receita deseja editar?'))-1
+            novo_nome_receita=str(input('Digite o novo nome da receita:')).capitalize()
+            novo_valor_receita=float(input('Digite o novo valor da receita:'))
+            nova_descrição_receita=str(input('\nDigite a descrição da receita:')).capitalize()
+            nova_data_vencimento_receita=input('\nInforme a data de vencimento da receita sem as barras ex:(01012024):')
+            vencimento_da_receita_formatada= f'{nova_data_vencimento_receita[0:2]}/{nova_data_vencimento_receita[2:4]}/{nova_data_vencimento_receita[4:]}'
+            nova_data_vencimento_receita_final=datetime.datetime.strptime(vencimento_da_receita_formatada,"%d/%m/%Y")
+
+            
+
+            dados_receita.pop(receita_que_vai_ser_editada)
+
+            nova_receita=Receita(uuid.uuid4(),novo_nome_receita,novo_valor_receita,nova_descrição_receita,nova_data_vencimento_receita_final)
+            
+        
+            dados_receita.insert(receita_que_vai_ser_editada,nova_receita)
+                
+            print('Receita editada com sucesso!')
+
+            input('Digite uma tecla para voltar ao menu principal')
+                
+
+        except:
+            print('ERRO, valor inválido!')
+            input('Digite uma tecla para voltar ao menu principal')
+            
+            
     
 

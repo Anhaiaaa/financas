@@ -7,4 +7,5 @@ def Menu_Principal():
     print('1-Despesas')
     print('2-Receita')
     print('3-Conta')
-    print('4-Encerrar Programa')
+    print('4-Saldo')
+    print('5-Encerrar Programa')
