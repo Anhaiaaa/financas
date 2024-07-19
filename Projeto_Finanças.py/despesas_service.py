@@ -7,6 +7,7 @@ from Despesa import Despesa
 import uuid
 import os
 import datetime
+from menus import menu_editar_despesa
 
 def Menu_Despesas():
     os.system('cls')
@@ -74,10 +75,9 @@ def Listar_despesas():
     print(' '*6,'GASTOS')
     print('-'*22)
     cont=0
-    for despesa_item in despesas:
-            cont+=1
+    for  indicie,despesa_item in enumerate(despesas):
             
-            print(f'{cont}-{despesa_item.nome} R$ {despesa_item.valor:.2f}\nDescrição:{despesa_item.descricao}\nValidade:{despesa_item.vencimento}\n')
+            print(f'{indicie+1}-{despesa_item.nome} R$ {despesa_item.valor:.2f}\nDescrição:{despesa_item.descricao}\nValidade:{despesa_item.vencimento}\n')
             
 def Listar_despesas_voltar_menu_principal():
      Listar_despesas()
@@ -102,6 +102,8 @@ def Editar_despesa():
         try:
             Listar_despesas()
             despesa_que_vai_ser_editada=int(input('Qual despesa deseja editar?'))-1
+            os.system('cls')
+            menu_editar_despesa()
             novo_nome_despesa=str(input('Digite o novo nome da despesa:')).capitalize()
             novo_valor_despesa=float(input('Digite o novo valor da despesa:'))
             nova_descrição_despesa=str(input('\nDigite a descrição da despesa:')).capitalize()
@@ -110,7 +112,6 @@ def Editar_despesa():
             nova_data_vencimento_despesa_final=datetime.datetime.strptime(vencimento_da_despesa_formatada,"%d/%m/%Y")
 
             
-
             despesas.pop(despesa_que_vai_ser_editada)
 
             nova_despesa=Despesa(uuid.uuid4(),novo_nome_despesa,novo_valor_despesa,nova_descrição_despesa,nova_data_vencimento_despesa_final)

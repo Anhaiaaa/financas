@@ -7,6 +7,7 @@ from dados import dados_receita
 from Receita import Receita
 import uuid
 import datetime
+from menus import menu_editar_receita
 
 def Menu_Receita():
     os.system('cls')
@@ -48,9 +49,9 @@ def Cadastrar_receita():
     print('-'*28)
     try:
         nome_da_receita=str(input('Digite o nome da receita:')).capitalize()
-        valor_da_receita=float(input('Digite o valor da despesa:'))
+        valor_da_receita=float(input('Digite o valor da receita:'))
 
-        descricao_receita=str(input('\nInforme a descrição da despesa:')).capitalize()
+        descricao_receita=str(input('\nInforme a descrição da receita:')).capitalize()
 
         vencimento_da_receita=input('\nInforme a data de vencimento da receita sem as barras ex:(01012024):')
         vencimento_da_receita_formatada= f'{vencimento_da_receita[0:2]}/{vencimento_da_receita[2:4]}/{vencimento_da_receita[4:]}'
@@ -73,9 +74,9 @@ def Listar_receitas():
     print(' '*5,'RECEITAS')
     print('-'*22)
     cont=0
-    for receita_item in dados_receita:
+    for  indicie,receita_item in enumerate(dados_receita):
         cont+=1
-        print(f'{cont}-{receita_item.nome} R$ {receita_item.valor:.2f}\nDescrição:{receita_item.descricao}\nVencimento:{receita_item.vencimento}\n')
+        print(f'{indicie}-{receita_item.nome} R$ {receita_item.valor:.2f}\nDescrição:{receita_item.descricao}\nVencimento:{receita_item.vencimento}\n')
 
 def Listar_receita_menu_principal():
     Listar_receitas()
@@ -104,6 +105,9 @@ def Editar_receita():
         try:
             Listar_receitas()
             receita_que_vai_ser_editada=int(input('Qual receita deseja editar?'))-1
+            os.system('cls')
+            menu_editar_receita()
+
             novo_nome_receita=str(input('Digite o novo nome da receita:')).capitalize()
             novo_valor_receita=float(input('Digite o novo valor da receita:'))
             nova_descrição_receita=str(input('\nDigite a descrição da receita:')).capitalize()

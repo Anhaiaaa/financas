@@ -3,9 +3,8 @@ import os
 from despesas_service import Menu_Despesas
 from receita_service import Menu_Receita
 from conta_service import Menu_Conta
-from menu_principal import Menu_Principal
+from menus import Menu_Principal
 from saldo import mostrar_saldo
-
 
 print('-'*22)
 print(' '*5,'FINANÇAS')
@@ -20,17 +19,14 @@ while True:
         if opcao==1:
             Menu_Despesas()
             
-        
         if opcao==2:
             Menu_Receita()
             
-        
         if opcao==3:
             Menu_Conta()
             
         if opcao==4:
             mostrar_saldo()
-            
             
         if opcao==5:
             os.system('cls')
