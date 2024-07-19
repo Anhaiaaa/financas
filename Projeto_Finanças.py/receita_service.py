@@ -75,8 +75,8 @@ def Listar_receitas():
     print('-'*22)
     cont=0
     for  indicie,receita_item in enumerate(dados_receita):
-        cont+=1
-        print(f'{indicie}-{receita_item.nome} R$ {receita_item.valor:.2f}\nDescrição:{receita_item.descricao}\nVencimento:{receita_item.vencimento}\n')
+        
+        print(f'{indicie+1}-{receita_item.nome} R$ {receita_item.valor:.2f}\nDescrição:{receita_item.descricao}\nVencimento:{receita_item.vencimento}\n')
 
 def Listar_receita_menu_principal():
     Listar_receitas()
