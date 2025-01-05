@@ -3,7 +3,8 @@
 #Excluir receita
 #Editar receita
 import os
-from dados import dados_receita
+from conta_service import Listar_contas
+from dados import dados_receita, lista_contas
 from Receita import Receita
 import uuid
 import datetime
@@ -58,10 +59,21 @@ def Cadastrar_receita():
         vencimento=datetime.datetime.strptime(vencimento_da_receita_formatada,"%d/%m/%Y")
 
 
-        receita1=Receita(uuid.uuid4(),nome_da_receita,valor_da_receita,descricao_receita,vencimento)
-        dados_receita.append(receita1)
+        os.system('cls')
+        for conta in lista_contas:
+                Listar_contas()
+                transferir_receita_conta=str(input('Deseja transferir a receita para qual conta?\n(Informe o Nome da conta):'))
+                if transferir_receita_conta==conta.nome:
+                    
+                    receita1=Receita(uuid.uuid4(),nome_da_receita,valor_da_receita,descricao_receita,vencimento)
+                    dados_receita.append(receita1)
 
-        print('\nReceita cadastrada com sucesso!')
+                    print('\nReceita cadastrada com sucesso!')
+                    
+                
+                else:
+                    print(f'O nome {transferir_receita_conta} não esta na lista de contas')
+        
         input('Digite uma tecla para voltar ao menu principal:')
 
     except:
@@ -116,12 +128,10 @@ def Editar_receita():
             nova_data_vencimento_receita_final=datetime.datetime.strptime(vencimento_da_receita_formatada,"%d/%m/%Y")
 
             
-
             dados_receita.pop(receita_que_vai_ser_editada)
 
             nova_receita=Receita(uuid.uuid4(),novo_nome_receita,novo_valor_receita,nova_descrição_receita,nova_data_vencimento_receita_final)
             
-        
             dados_receita.insert(receita_que_vai_ser_editada,nova_receita)
                 
             print('Receita editada com sucesso!')

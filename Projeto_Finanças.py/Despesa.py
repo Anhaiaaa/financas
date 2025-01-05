@@ -5,3 +5,4 @@ class Despesa():
         self.valor=valor
         self.vencimento=vencimento
         self.descricao=descricao
+       

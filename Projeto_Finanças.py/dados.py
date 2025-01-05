@@ -1,13 +1,14 @@
 
-despesas=[]
+lista_despesas=[]
 
+lista_contas=[]
 
 dados_receita=[]
 
-saldo=0
 
 
-dados_conta={'Nome':'','Saldo':''}
+
+
 
 
 
